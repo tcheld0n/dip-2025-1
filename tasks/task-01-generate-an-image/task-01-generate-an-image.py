@@ -1,5 +1,6 @@
 import numpy as np
 import cv2
+# import matplotlib.pyplot as plt
 
 def generate_image(seed, width, height, mean, std):
     """
@@ -16,7 +17,9 @@ def generate_image(seed, width, height, mean, std):
         image (numpy.ndarray): The generated image.
     """
     ### START CODE HERE ###
-    ### TODO
+    np.random.seed(seed)
+    image = np.random.normal(mean, std, size=(height, width))
+    # print(image)
     ### END CODE HERE ###
     return image
 
@@ -41,4 +44,14 @@ if __name__ == "__main__":
     print("Test passed!")
 
 
-
+    # # Image display
+    # image_normalized = cv2.normalize(image, None, 0, 255, cv2.NORM_MINMAX)
+    # image_uint8 = image_normalized.astype(np.uint8)
+    
+    # plt.imshow(image_uint8, cmap='gray', vmin=0, vmax=255)
+    
+    # for i in range(image.shape[0]):
+    #     for j in range(image.shape[1]):
+    #         plt.text(j, i, str(image_uint8[i, j]), ha='center', va='center', color='blue', fontsize=10)
+    
+    # plt.show()
