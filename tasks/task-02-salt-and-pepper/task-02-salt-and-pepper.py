@@ -7,7 +7,22 @@ def create_salt_and_pepper_noise(height=100, width=100, salt_prob=0.05, pepper_p
     equal to salt_prob and pepper_prob. Pixels without noise have values of 0.5.
     """
     ### START CODE HERE ###
-    # TODO
+    
+    # Initialize the base image with values 0.5
+    img = np.full((height, width), 0.5)
+    
+    # Generate random values for salt and pepper noise without overlap
+    salt_mask = np.random.rand(height, width) < salt_prob
+    pepper_mask = np.random.rand(height, width) < pepper_prob
+
+    # Apply noise salt
+    img[salt_mask] = 1.0
+    
+    # Apply noise pepper
+    # Ensure no have overlap between salt and pepper
+    pepper_mask_adjusted = pepper_mask & ~salt_mask
+    img[pepper_mask_adjusted] = -1.0
+    
     ### END CODE HERE ###
     return img
 
